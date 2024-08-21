@@ -1,3 +1,5 @@
+using DotNet8.SignalRNotification.WebApi.Hubs;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -17,6 +19,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.MapHub<StockHub>("/hubs/stock");
 
 var summaries = new[]
 {
