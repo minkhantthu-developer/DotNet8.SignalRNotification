@@ -1,5 +1,6 @@
 using DotNet8.SignalRNotification.WebApi;
 using DotNet8.SignalRNotification.WebApi.Hubs;
+using Microsoft.AspNetCore.SignalR;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,8 +8,18 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
 builder.Services.AddSignalR();
+
+builder.Services.AddHostedService<Worker>();
+
+builder.Services.AddCors(options => options.AddPolicy("CorsPolicy",
+        builder =>
+        {
+            builder.AllowAnyHeader()
+                   .AllowAnyMethod()
+                   .SetIsOriginAllowed((host) => true)
+                   .AllowCredentials();
+        }));
 
 var app = builder.Build();
 
@@ -19,11 +30,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors("CorsPolicy");
 app.UseHttpsRedirection();
 
 app.MapHub<StockHub>("/hubs/stock");
-
-builder.Services.AddHostedService<Worker>();
 
 var summaries = new[]
 {
@@ -44,6 +54,14 @@ app.MapGet("/weatherforecast", () =>
 })
 .WithName("GetWeatherForecast")
 .WithOpenApi();
+
+app.MapPost("sendStockNotification", async (
+    string stockName,
+    decimal price,
+    IHubContext<StockHub> context) =>
+{
+    await context.Clients.All.SendAsync("ReceiveStockPrice", stockName, price);
+});
 
 app.Run();
 

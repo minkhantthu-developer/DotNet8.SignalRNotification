@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35122.118
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNet8.SignalRNotification.WebApi", "DotNet8.SignalRNotification.WebApi\DotNet8.SignalRNotification.WebApi.csproj", "{567BFC3C-256D-4723-96FC-E64D3C75EC78}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNet8.SignalRNotification.WebApi", "DotNet8.SignalRNotification.WebApi\DotNet8.SignalRNotification.WebApi.csproj", "{567BFC3C-256D-4723-96FC-E64D3C75EC78}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNet8.SignalRNotification.ConsoleApp", "DotNet8.SignalRNotification.ConsoleApp\DotNet8.SignalRNotification.ConsoleApp.csproj", "{FCF15C62-D490-4641-ACCA-C3FF4B40E398}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{567BFC3C-256D-4723-96FC-E64D3C75EC78}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{567BFC3C-256D-4723-96FC-E64D3C75EC78}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{567BFC3C-256D-4723-96FC-E64D3C75EC78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCF15C62-D490-4641-ACCA-C3FF4B40E398}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCF15C62-D490-4641-ACCA-C3FF4B40E398}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCF15C62-D490-4641-ACCA-C3FF4B40E398}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCF15C62-D490-4641-ACCA-C3FF4B40E398}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
