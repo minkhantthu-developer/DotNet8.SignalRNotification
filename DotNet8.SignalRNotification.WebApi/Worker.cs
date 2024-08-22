@@ -9,7 +9,6 @@ namespace DotNet8.SignalRNotification.WebApi
         private readonly ILogger<Worker> _logger;
         private readonly IHubContext<StockHub> _stockHub;
         private const string stockName = "Basic stock Name";
-        private decimal stockPrice = 100;
 
         public Worker(ILogger<Worker> logger, IHubContext<StockHub> stockHub)
         {
@@ -25,10 +24,10 @@ namespace DotNet8.SignalRNotification.WebApi
                 {
                     _logger.LogInformation("Worker running at:{time}",DateTimeOffset.Now);
                     Random rn=new Random();
-                    decimal stockRaise = rn.Next(0, 10000);
+                    decimal stockRaise = rn.Next(1000, 10000);
                     string[] stockNames = { "Apple", "Google", "OpenAi", "Microsoft", "Amazon" };
                     var stockName = stockNames[rn.Next(0,stockNames.Length)];
-                    await _stockHub.Clients.All.SendAsync("ReceiveStockPrice", stockName, stockPrice);
+                    await _stockHub.Clients.All.SendAsync("ReceiveStockPrice", stockName, stockRaise);
                     _logger.LogInformation("Send stock price: {stockName} - {stockRaise}",stockName,stockRaise);
                     await Task.Delay(4000,stoppingToken);
                 }
